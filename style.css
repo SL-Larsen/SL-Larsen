@@ -19,7 +19,7 @@ a{color:var(--accent);text-underline-offset:.2em}
 .shell{display:grid;grid-template-columns:340px 1fr;min-height:100vh}
 .side{position:sticky;top:0;height:100vh;padding:2.5rem 2rem;border-right:1px solid var(--line);
   display:flex;flex-direction:column;gap:1.5rem}
-.headshot{width:100%;max-width:276px;aspect-ratio:4/5;object-fit:cover;background:var(--line);
+.headshot{display:block;width:100%;max-width:276px;height:auto;aspect-ratio:4/5;object-fit:cover;background:var(--line);
   border-radius:138px 138px 6px 6px}
 .name{font:700 1.6rem/1.15 var(--display);margin:0}
 .pronouns{margin:.2rem 0 0;color:var(--muted);font-size:.98rem}
@@ -57,12 +57,18 @@ p{max-width:65ch}
 @media (max-width:860px){
   .shell{grid-template-columns:1fr}
   .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);
-    display:grid;grid-template-columns:96px 1fr;gap:1rem;padding:1.25rem 1.5rem;align-items:center}
-  .headshot{max-width:96px;border-radius:48px 48px 4px 4px}
-  .side nav,.scale{grid-column:1/-1}
-  .side ul{flex-direction:row;gap:.5rem}
-  .side nav a{border-left:0;border-bottom:3px solid transparent;border-radius:6px 6px 0 0}
+    padding:1.75rem 1.5rem 1.25rem;gap:1.25rem;align-items:flex-start}
+  /* vertical order: name/title, photo, colour bar, nav */
+  .id{order:1}
+  .headshot{order:2;width:100%;max-width:240px;margin:0 auto;border-radius:120px 120px 6px 6px}
+  .scale{order:3;width:100%}
+  .side nav{order:4;width:100%}
+  .side ul{flex-direction:row;flex-wrap:wrap;gap:.25rem .5rem}
+  .side nav a{padding:.5rem .75rem;border-left:0;border-bottom:3px solid transparent;border-radius:6px 6px 0 0}
   .side nav a[aria-selected="true"]{border-bottom-color:var(--orange)}
-  main{padding:2.5rem 1.5rem}
+  main{padding:2rem 1.5rem 3rem}
+  .contact{grid-template-columns:1fr;gap:.1rem 0}
+  .contact dd{margin-bottom:.9rem;overflow-wrap:anywhere}
+  .cv-frame{height:70vh;min-height:420px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
