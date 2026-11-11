@@ -26,6 +26,35 @@
       location.hash = n.dataset.tab;
     });
   });
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function paintBtn() {
+    var dark = root.getAttribute('data-theme') !== 'light';
+    btn.textContent = dark ? '\u2600 Light theme' : '\u263E Dark theme';
+    btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  btn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    paintBtn();
+  });
+  paintBtn();
+
+  // Keep following the device setting live, unless the visitor has chosen a theme with the button
+  if (window.matchMedia) {
+    var mq = matchMedia('(prefers-color-scheme: dark)');
+    var onChange = function (e) {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (err) {}
+      if (saved === 'light' || saved === 'dark') return;
+      root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      paintBtn();
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
   show(location.hash.slice(1), false);

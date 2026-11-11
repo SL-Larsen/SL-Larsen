@@ -1,12 +1,25 @@
+/* Light is the base; dark applies when the device prefers it (unless the visitor chose light) or when chosen with the button */
 :root{
   --paper:#F6EDEA; --panel:#FCF8F6; --ink:#1E2A38; --muted:#4F5C6A;
   --line:#E2D2CD; --accent:#3D6190; --accent-ink:#FFFFFF;
   --red:#982E2E; --orange:#FA5C33; --yellow:#DCDFA3; --mint:#B8D8BE; --sea:#86BBA6; --blue:#3D6190;
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"Public Sans","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
-  :root{--paper:#14202C;--panel:#1C2C3B;--ink:#E8EFE6;--muted:#A3B8B4;--line:#2B4052;--accent:#86BBA6;--accent-ink:#14202C;--orange:#FF7A55;--red:#D0605B;--blue:#5E86B5}
+  :root:not([data-theme="light"]){
+    --paper:#14202C; --panel:#1C2C3B; --ink:#E8EFE6; --muted:#A3B8B4;
+    --line:#2B4052; --accent:#86BBA6; --accent-ink:#14202C;
+    --red:#D0605B; --orange:#FF7A55; --blue:#5E86B5;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14202C; --panel:#1C2C3B; --ink:#E8EFE6; --muted:#A3B8B4;
+  --line:#2B4052; --accent:#86BBA6; --accent-ink:#14202C;
+  --red:#D0605B; --orange:#FF7A55; --blue:#5E86B5;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -54,7 +67,11 @@ p{max-width:65ch}
 .contact dt{color:var(--muted)}
 .contact dd{margin:0}
 
-.site-footer{background:#fff;color:#000;border-top:1px solid var(--line);padding:.9rem 1.5rem;text-align:center;font-size:.8rem;line-height:1.4}
+.theme-toggle{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:999px;
+  padding:.5rem .95rem;font:500 .92rem/1 var(--body);cursor:pointer}
+.theme-toggle:hover{border-color:var(--accent)}
+.site-footer{background:var(--panel);color:var(--ink);border-top:1px solid var(--line);padding:.9rem 1.5rem;text-align:center;font-size:.8rem;line-height:1.4}
 .site-footer p{margin:0 auto;max-width:none}
 
 @media (max-width:860px){
@@ -66,6 +83,7 @@ p{max-width:65ch}
   .headshot{order:2;width:100%;max-width:240px;margin:0 auto;border-radius:120px 120px 6px 6px}
   .scale{order:3;width:100%}
   .side nav{order:4;width:100%}
+  .theme-toggle{order:5;margin-top:0}
   .side ul{flex-direction:row;flex-wrap:wrap;gap:.25rem .5rem}
   .side nav a{padding:.5rem .75rem;border-left:0;border-bottom:3px solid transparent;border-radius:6px 6px 0 0}
   .side nav a[aria-selected="true"]{border-bottom-color:var(--orange)}

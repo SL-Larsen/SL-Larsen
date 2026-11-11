@@ -7,6 +7,11 @@
 <meta name="description" content="Portfolio of Soren L. Larsen, PhD, Postdoctoral Scholar in the Department of Demography at UC Berkeley. Read about my work, view my CV and get in touch.">
 <meta property="og:title" content="Soren L. Larsen, PhD · Postdoctoral Scholar, UC Berkeley">
 <meta property="og:description" content="Portfolio, CV and contact details.">
+<script>
+(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+if(t!=='light'&&t!=='dark'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +38,7 @@
         <li><a role="tab" href="#contact" data-tab="contact">Contact</a></li>
       </ul>
     </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle"></button>
   </aside>
 
   <main id="main">
