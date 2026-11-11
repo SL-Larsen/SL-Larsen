@@ -54,6 +54,9 @@ p{max-width:65ch}
 .contact dt{color:var(--muted)}
 .contact dd{margin:0}
 
+.site-footer{background:#fff;color:#000;border-top:1px solid var(--line);padding:.9rem 1.5rem;text-align:center;font-size:.8rem;line-height:1.4}
+.site-footer p{margin:0 auto;max-width:none}
+
 @media (max-width:860px){
   .shell{grid-template-columns:1fr}
   .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);

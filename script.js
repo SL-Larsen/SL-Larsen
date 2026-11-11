@@ -26,5 +26,7 @@
       location.hash = n.dataset.tab;
     });
   });
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
   show(location.hash.slice(1), false);
 })();
